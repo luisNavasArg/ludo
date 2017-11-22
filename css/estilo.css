@@ -1,0 +1,10 @@
+body {
+    background-color: lightBlue;
+}
+
+#canvas {
+    position: absolute;
+    top: 30px;
+    left: 300px;
+    z-index: 10;
+}
