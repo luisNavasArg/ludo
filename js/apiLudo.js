@@ -17,6 +17,9 @@
             for (var i = 0; i <= 32; i++) {
                 this.activo[i] = false;
             }
+            this.zonaRoja =[[0,1,2,3,4,5],[6,7,8,9,10,11],[12,13,14,15,16,17]];
+            alert(this.zonaRoja[0][0]);
+
 
         }, //finalizamos el constructor y comenzamos el prototipo
         self.Tablero.prototype = {
@@ -35,7 +38,7 @@
                 ctx.stroke();
 
 
-                //Creamos las 4 fichas azules
+                //Creamos las zonas de las fichas
                 ctx.fillStyle = "blue";
                 ctx.lineWidth = 0;
 
@@ -73,10 +76,15 @@
                     for(var j=0;j < 3;j++){
 
                         for(var i=0;i<15;i++){
-                          if((acumuladorX>=40)&&(acumuladorX<=240)&&(acumuladorY==280)||(acumuladorX==40)&&(acumuladorY==240)){
+                          if((acumuladorX>=40)&&(acumuladorX<=200)&&(acumuladorY==280)||
+                          (acumuladorX==40)&&(acumuladorY==240)){
                             ctx.fillStyle = "blue";
-                          }else if((acumuladorX>=320)&&(acumuladorX<=520)&&(acumuladorY==280)||(acumuladorY==320)&&(acumuladorX==520)){
+                          }else if((acumuladorX>=360)&&(acumuladorX<=520)&&(acumuladorY==280)||(acumuladorY==320)&&(acumuladorX==520)){
                             ctx.fillStyle = "green";
+                          }else if((acumuladorX==240)&&(acumuladorY==240)||(acumuladorX==240)&&(acumuladorY==280)||
+                          (acumuladorX==280)&&(acumuladorY==240)|| (acumuladorX==280)&&(acumuladorY==280)||
+                          (acumuladorX==320)&&(acumuladorY==240)||(acumuladorX==320)&&(acumuladorY==280)){
+                            ctx.fillStyle = "grey";
                           }else{
                             ctx.fillStyle = "white";
                           }
@@ -94,7 +102,7 @@
                     acumuladorX = 240;
                     acumuladorY = 0;
                     for(var x=0;x<3;x++){
-                      for(var i=0;i<7;i++){
+                      for(var i=0;i<6;i++){
                         if((acumuladorY>=40)&&(acumuladorY<=440)&&(acumuladorX==280)||((acumuladorX==320)&&(acumuladorY==40))){
                           ctx.fillStyle = "yellow";
                         }else{
@@ -136,7 +144,20 @@
                   acumuladorY = 320;
 
                     }
+                    this.crearJugadores();
 
+            },
+            crearJugadores: function(){
+
+              alert(this.zonaRoja[0][0]);
+              var c = document.getElementById("canvas");
+            var ctx = c.getContext("2d");
+            ctx.lineWidth = 4;
+            ctx.fillStyle = "blue";
+            ctx.beginPath();
+            ctx.arc(this.zonaRoja[0][0],60, 16, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
             }
 
         } //finalizamos el prototipo
@@ -144,4 +165,6 @@
 
 
 
+
 var tablero = new Tablero(0, 0, 600, 600);
+//tablero.crearJugadores();
