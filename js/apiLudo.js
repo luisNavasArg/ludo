@@ -13,16 +13,22 @@
             this.movetoY = [];
             this.linetoX = [];
             this.linetoY = [];
-            this.res = " ";
+            this.res = " ";/*
             for (var i = 0; i <= 32; i++) {
                 this.activo[i] = false;
-            }
-            this.zonaRojax =[260,300,340];
+            }*/
+            this.zonaRojax =[260, 300, 340];
             this.zonaRojay = [[580, 540, 500, 460, 420, 380], [380, 420, 460, 500, 540, 580], [580, 540, 500, 460, 420, 380]];
 
             this.zonaAzulx = [[20, 60, 100, 140, 180, 220], [220, 180, 140, 100, 60, 20], [20, 60, 100, 140, 180, 220]];
-            this.zonaAzuly = [ 260, 300, 340];           
+            this.zonaAzuly = [260, 300, 340];
 
+
+            this.zonaAmax = [260, 300, 340];
+            this.zonaAmay = [[20, 60, 100, 140, 180, 220], [220, 180, 140, 100, 60, 20], [20, 60, 100, 140, 180, 220]];
+
+            this.zonaVerdx = [[380, 420, 460, 500, 540, 580], [580, 540, 500, 460, 420, 380], [380, 420, 460, 500, 540, 580]];
+            this.zonaVerdy = [260, 300, 340];
 
         }, //finalizamos el constructor y comenzamos el prototipo
         self.Tablero.prototype = {
@@ -152,15 +158,23 @@
             },
             crearJugadores: function(){
 
-             // alert(this.zonaRojax[0][0]);
-              var c = document.getElementById("canvas");
-            var ctx = c.getContext("2d");
-            ctx.lineWidth = 4;
-            ctx.fillStyle = "red";
-            ctx.beginPath();
-            ctx.arc(this.zonaAzulx[0][0],this.zonaAzuly[0],  16, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.stroke();
+                var c = document.getElementById("canvas");
+                var ctx = c.getContext("2d");
+                ctx.lineWidth = 4;
+                ctx.fillStyle = "red";
+
+
+                for (var i = 0; i < this.zonaVerdx.length; i++) {
+                
+                    for (var j = 0; j < this.zonaVerdy.length + 3; j++) {
+
+                    ctx.beginPath();
+                    ctx.arc(this.zonaVerdx[i][j], this.zonaVerdy[i], 16, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.stroke();
+                }
+            }
+
             }
 
         } //finalizamos el prototipo
