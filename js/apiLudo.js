@@ -1,24 +1,9 @@
 (function() {
     //Inicializamos con el constructor las variables a usar
-    self.Tablero = function(x, y, ac, al) {
-            this.x = x;
-            this.y = y;
-            this.ac = ac;
-            this.al = al;
-            this.activo = [];
-            this.posicionX = [];
-            this.posicionY = [];
-            this.sitio = [];
-            this.movetoX = [];
-            this.movetoY = [];
-            this.linetoX = [];
-            this.linetoY = [];
-            this.res = " ";/*
-            for (var i = 0; i <= 32; i++) {
-                this.activo[i] = false;
-            }*/
-            this.zonaRojax =[260, 300, 340];
-            this.zonaRojay = [[580, 540, 500, 460, 420, 380], [380, 420, 460, 500, 540, 580], [580, 540, 500, 460, 420, 380]];
+    self.Tablero = function() {
+
+        /*son 56 puntos*/
+            
 
             this.zonaAzulx = [[20, 60, 100, 140, 180, 220], [220, 180, 140, 100, 60, 20], [20, 60, 100, 140, 180, 220]];
             this.zonaAzuly = [260, 300, 340];
@@ -29,6 +14,10 @@
 
             this.zonaVerdx = [[380, 420, 460, 500, 540, 580], [580, 540, 500, 460, 420, 380], [380, 420, 460, 500, 540, 580]];
             this.zonaVerdy = [260, 300, 340];
+
+            this.zonaRojax = [260, 300, 340];
+            this.zonaRojay = [[580, 540, 500, 460, 420, 380], [380, 420, 460, 500, 540, 580], [580, 540, 500, 460, 420, 380]];
+
 
         }, //finalizamos el constructor y comenzamos el prototipo
         self.Tablero.prototype = {
@@ -78,7 +67,10 @@
                     }
                   }
 
-                    var cuadrosChicos=[0,40,80,160,200,240,280,320,360,400,440,480,520,560];
+
+                /*
+                
+                    var c=[0,40,80,160,200,240,280,320,360,400,440,480,520,560];
                     var acumuladorX = 0;
                     var acumuladorY = 240;
 
@@ -152,30 +144,52 @@
                   acumuladorX=acumuladorX + 40;
                   acumuladorY = 320;
 
+                    }*/
+
+              // this.moviendoJugadores(this.zonaVerdx[0][0], this.zonaVerdy[0]);
+                
+                //this.crearJugadores(this.zonaAmax[0], this.zonaAmay[0][0]);
+
+                for (var cx = 0; cx < this.zonaAmax.length; cx++) {
+                    for (var cy = 0; cy < this.zonaAmay.length + 3; cy++){
+                        this.crearZonasJuego(this.zonaAmax[cx], this.zonaAmay[cx][cy], "white");
+                        this.crearZonasJuego(this.zonaRojax[cx], this.zonaRojay[cx][cy], "white");
+                        this.crearZonasJuego(this.zonaVerdx[cx][cy], this.zonaVerdy[cx], "white");
+                        this.crearZonasJuego(this.zonaAzulx[cx][cy], this.zonaAzuly[cx], "white");
+
+                      
                     }
-                    this.crearJugadores();
+                }
+
+                this.crearJugadores(60, this.zonaAmay[2][4], "green");
+                    
+               
+
+        },
+            
+            moviendoJugadores: function (valuex,valuey) {
+                
+
+            }, crearZonasJuego: function (valorx,valory,colorf) {
+                ctx.fillStyle = colorf;
+                ctx.beginPath();
+                ctx.rect(valorx - 20, valory - 20, 40, 40);
+                ctx.fill();
+                ctx.stroke();
 
             },
-            crearJugadores: function(){
+            crearJugadores: function(valorX, valorY, coloR){
 
                 var c = document.getElementById("canvas");
                 var ctx = c.getContext("2d");
                 ctx.lineWidth = 4;
-                ctx.fillStyle = "red";
-
-
-                for (var i = 0; i < this.zonaVerdx.length; i++) {
-                
-                    for (var j = 0; j < this.zonaVerdy.length + 3; j++) {
-
-                    ctx.beginPath();
-                    ctx.arc(this.zonaVerdx[i][j], this.zonaVerdy[i], 16, 0, 2 * Math.PI);
-                    ctx.fill();
-                    ctx.stroke();
-                }
+                ctx.fillStyle = coloR;
+                ctx.beginPath();
+                ctx.arc(valorX,valorY, 16, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.stroke();
             }
-
-            }
+                            
 
         } //finalizamos el prototipo
 })();
@@ -183,5 +197,7 @@
 
 
 
-var tablero = new Tablero(0, 0, 600, 600);
+var tablero = new Tablero();
+
+
 //tablero.crearJugadores();
