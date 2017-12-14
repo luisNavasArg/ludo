@@ -161,16 +161,64 @@
                     }
                 }
 
-                this.crearJugadores(60, this.zonaAmay[2][4], "green");
-                    
+
+
+                this.zonaAzulxInicial = [60, 180];
+                this.zonaAzulyInicial = [60, 180];
+                this.crearJugadores(this.zonaAzulxInicial[0], this.zonaAzulyInicial[0], "blue");
+                this.crearJugadores(this.zonaAzulxInicial[1], this.zonaAzulyInicial[0], "blue");
+                this.crearJugadores(this.zonaAzulxInicial[0], this.zonaAzulyInicial[1], "blue");
+                this.crearJugadores(this.zonaAzulxInicial[1], this.zonaAzulyInicial[1], "blue");
+
+                this.zonaAmaxInicial = [420, 540];
+                this.zonaAmayInicial = [60, 180];
+                this.crearJugadores(this.zonaAmaxInicial[0], this.zonaAmayInicial[0], "yellow");
+                this.crearJugadores(this.zonaAmaxInicial[1], this.zonaAmayInicial[0], "yellow");
+                this.crearJugadores(this.zonaAmaxInicial[0], this.zonaAmayInicial[1], "yellow");
+                this.crearJugadores(this.zonaAmaxInicial[1], this.zonaAmayInicial[1], "yellow");
+
+                this.zonaVerdxInicial = [420,540];
+                this.zonaVerdyInicial = [540, 420];
+                this.crearJugadores(this.zonaVerdxInicial[0], this.zonaVerdyInicial[0], "green");
+                this.crearJugadores(this.zonaVerdxInicial[1], this.zonaVerdyInicial[0], "green");
+                this.crearJugadores(this.zonaVerdxInicial[0], this.zonaVerdyInicial[1], "green");
+                this.crearJugadores(this.zonaVerdxInicial[1], this.zonaVerdyInicial[1], "green");
+
+                this.zonaRojaxInicial = [60, 180];
+                this.zonaRojayInicial = [540, 420];
+                this.crearJugadores(this.zonaRojaxInicial[0], this.zonaRojayInicial[0], "red");
+                this.crearJugadores(this.zonaRojaxInicial[1], this.zonaRojayInicial[0], "red");
+                this.crearJugadores(this.zonaRojaxInicial[0], this.zonaRojayInicial[1], "red");
+                this.crearJugadores(this.zonaRojaxInicial[1], this.zonaRojayInicial[1], "red");
+/*
+                if (this.lanzarDado() == 1 || this.lanzarDado() == 6) {
+                    console.log("Salimos");
+                }*/
                
+                var luisN = setInterval(this.lanzarDado(), 1000);
 
         },
+
+            lanzarDado: function() {
+        for (var p = 0; p < 10; p++) {
+            var numero = parseInt(Math.random() * 6) + 1;
+            console.log(numero);
+
+            var luis = document.getElementById('etiqueta');
+            luis.innerHTML = numero;
+
+        }
+        return numero;
+
+
+    },
             
             moviendoJugadores: function (valuex,valuey) {
                 
 
-            }, crearZonasJuego: function (valorx,valory,colorf) {
+            },
+
+            crearZonasJuego: function (valorx, valory, colorf) {
                 ctx.fillStyle = colorf;
                 ctx.beginPath();
                 ctx.rect(valorx - 20, valory - 20, 40, 40);
@@ -189,10 +237,12 @@
                 ctx.fill();
                 ctx.stroke();
             }
+            
                             
 
         } //finalizamos el prototipo
 })();
+
 
 
 
