@@ -3,11 +3,27 @@
     self.Tablero = function() {
 
         /*son 56 puntos*/
+
+        this.caminoAzul = [];
+        this.coordenadasCamino = [];
+
+        for (var a = 0; a < 56; a++) {
+            this.caminoAzul.push(true);
+            console.log(this.caminoAzul[a]);
+        }
+    
             
 
             this.zonaAzulx = [[20, 60, 100, 140, 180, 220], [220, 180, 140, 100, 60, 20], [20, 60, 100, 140, 180, 220]];
             this.zonaAzuly = [260, 300, 340];
 
+            for (var b = 0; b < this.zonaAzulx.length; b++) {
+                for (var c = 0; c < this.zonaAzuly.length + 3; c++){
+                    this.coordenadasCamino.push( this.zonaAzulx[b][c] + " , " + this.zonaAzuly[b]);
+                    console.log(this.coordenadasCamino[b]);
+                    console.log(b);
+                    }
+        }
 
             this.zonaAmax = [260, 300, 340];
             this.zonaAmay = [[20, 60, 100, 140, 180, 220], [220, 180, 140, 100, 60, 20], [20, 60, 100, 140, 180, 220]];
@@ -217,6 +233,26 @@
                 
 
             },
+             moverFicha:function (event) {
+        var x = event.clientX - 300;
+        var y = event.clientY - 30;
+        if ((x >= 0 && x <= 39) && (y>= 240 && y<=279)){
+            x = 20;
+        
+            y = 260;
+        }
+        for (var d = 0; d < this.coordenadasCamino.length; d++){
+           
+            if (this.coordenadasCamino[d] == x + " , " + y) {
+                this.crearJugadores(x, y, "verde");
+
+            }
+        }
+        arregloDeSubCadenas = this.coordenadasCamino[0].split(',' );
+        alert(parseInt(arregloDeSubCadenas[0]) +90);
+        
+
+    },
 
             crearZonasJuego: function (valorx, valory, colorf) {
                 ctx.fillStyle = colorf;
