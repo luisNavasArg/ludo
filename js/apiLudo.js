@@ -5,35 +5,7 @@
         /*son 56 puntos*/
 
         this.caminoAzul = [];
-        this.coordenadasCamino = [];
-
-        for (var a = 0; a < 56; a++) {
-            this.caminoAzul.push(true);
-            console.log(this.caminoAzul[a]);
-        }
-    
-            
-
-            this.zonaAzulx = [[20, 60, 100, 140, 180, 220], [220, 180, 140, 100, 60, 20], [20, 60, 100, 140, 180, 220]];
-            this.zonaAzuly = [260, 300, 340];
-
-            for (var b = 0; b < this.zonaAzulx.length; b++) {
-                for (var c = 0; c < this.zonaAzuly.length + 3; c++){
-                    this.coordenadasCamino.push( this.zonaAzulx[b][c] + " , " + this.zonaAzuly[b]);
-                    console.log(this.coordenadasCamino[b]);
-                    console.log(b);
-                    }
-        }
-
-            this.zonaAmax = [260, 300, 340];
-            this.zonaAmay = [[20, 60, 100, 140, 180, 220], [220, 180, 140, 100, 60, 20], [20, 60, 100, 140, 180, 220]];
-
-            this.zonaVerdx = [[380, 420, 460, 500, 540, 580], [580, 540, 500, 460, 420, 380], [380, 420, 460, 500, 540, 580]];
-            this.zonaVerdy = [260, 300, 340];
-
-            this.zonaRojax = [260, 300, 340];
-            this.zonaRojay = [[580, 540, 500, 460, 420, 380], [380, 420, 460, 500, 540, 580], [580, 540, 500, 460, 420, 380]];
-
+        this.coordenadasCamino = ["220, 340", "180,340", "140,340", "100,340", "60,340", "20,340", "20,300", "20,260", "60,260", "100,260", "140,260", "180,260", "220,260"];
 
         }, //finalizamos el constructor y comenzamos el prototipo
         self.Tablero.prototype = {
@@ -84,135 +56,20 @@
                   }
 
 
-                /*
-                
-                    var c=[0,40,80,160,200,240,280,320,360,400,440,480,520,560];
-                    var acumuladorX = 0;
-                    var acumuladorY = 240;
-
-                    for(var j=0;j < 3;j++){
-
-                        for(var i=0;i<15;i++){
-                          if((acumuladorX>=40)&&(acumuladorX<=200)&&(acumuladorY==280)||
-                          (acumuladorX==40)&&(acumuladorY==240)){
-                            ctx.fillStyle = "blue";
-                          }else if((acumuladorX>=360)&&(acumuladorX<=520)&&(acumuladorY==280)||(acumuladorY==320)&&(acumuladorX==520)){
-                            ctx.fillStyle = "green";
-                          }else if((acumuladorX==240)&&(acumuladorY==240)||(acumuladorX==240)&&(acumuladorY==280)||
-                          (acumuladorX==280)&&(acumuladorY==240)|| (acumuladorX==280)&&(acumuladorY==280)||
-                          (acumuladorX==320)&&(acumuladorY==240)||(acumuladorX==320)&&(acumuladorY==280)){
-                            ctx.fillStyle = "grey";
-                          }else{
-                            ctx.fillStyle = "white";
-                          }
-
-                        ctx.beginPath();
-                        ctx.rect(acumuladorX,acumuladorY,40,40);
-                        ctx.fill();
-                        ctx.stroke();
-                        acumuladorX=acumuladorX + 40;
-
-                    }
-                    acumuladorY=acumuladorY + 40;
-                    acumuladorX=0;
-                    }
-                    acumuladorX = 240;
-                    acumuladorY = 0;
-                    for(var x=0;x<3;x++){
-                      for(var i=0;i<6;i++){
-                        if((acumuladorY>=40)&&(acumuladorY<=440)&&(acumuladorX==280)||((acumuladorX==320)&&(acumuladorY==40))){
-                          ctx.fillStyle = "yellow";
-                        }else{
-                          ctx.fillStyle = "white";
-                        }
-
-                      ctx.beginPath();
-                      ctx.rect(acumuladorX,acumuladorY,40,40);
-                      ctx.fill();
-                      ctx.stroke();
-                      acumuladorY=acumuladorY + 40;
-
-                  }
-                  acumuladorX=acumuladorX + 40;
-                  acumuladorY = 0;
-
-                    }
-                    acumuladorX = 240;
-                    acumuladorY = 320;
-                    for(var x=0;x<3;x++){
-                      for(var i=0;i<7;i++){
-                        if((acumuladorY>=360)&&(acumuladorY<=520)&&(acumuladorX==280)||(acumuladorX==240)&&(acumuladorY==520)){
-                          ctx.fillStyle = "red";
-                        }else if((acumuladorX>=240)&&(acumuladorX<=320)&&(acumuladorY==320)||(acumuladorX==280)&&(acumuladorY==320)){
-                          ctx.fillStyle = "grey";
-                        }else {
-                          ctx.fillStyle = "white";
-
-
-                        }
-                      ctx.beginPath();
-                      ctx.rect(acumuladorX,acumuladorY,40,40);
-                      ctx.fill();
-                      ctx.stroke();
-                      acumuladorY=acumuladorY + 40;
-
-                  }
-                  acumuladorX=acumuladorX + 40;
-                  acumuladorY = 320;
-
-                    }*/
-
-              // this.moviendoJugadores(this.zonaVerdx[0][0], this.zonaVerdy[0]);
-                
-                //this.crearJugadores(this.zonaAmax[0], this.zonaAmay[0][0]);
-
-                for (var cx = 0; cx < this.zonaAmax.length; cx++) {
-                    for (var cy = 0; cy < this.zonaAmay.length + 3; cy++){
-                        this.crearZonasJuego(this.zonaAmax[cx], this.zonaAmay[cx][cy], "white");
-                        this.crearZonasJuego(this.zonaRojax[cx], this.zonaRojay[cx][cy], "white");
-                        this.crearZonasJuego(this.zonaVerdx[cx][cy], this.zonaVerdy[cx], "white");
-                        this.crearZonasJuego(this.zonaAzulx[cx][cy], this.zonaAzuly[cx], "white");
-
-                      
-                    }
-                }
-
-
-
-                this.zonaAzulxInicial = [60, 180];
-                this.zonaAzulyInicial = [60, 180];
-                this.crearJugadores(this.zonaAzulxInicial[0], this.zonaAzulyInicial[0], "blue");
-                this.crearJugadores(this.zonaAzulxInicial[1], this.zonaAzulyInicial[0], "blue");
-                this.crearJugadores(this.zonaAzulxInicial[0], this.zonaAzulyInicial[1], "blue");
-                this.crearJugadores(this.zonaAzulxInicial[1], this.zonaAzulyInicial[1], "blue");
-
-                this.zonaAmaxInicial = [420, 540];
-                this.zonaAmayInicial = [60, 180];
-                this.crearJugadores(this.zonaAmaxInicial[0], this.zonaAmayInicial[0], "yellow");
-                this.crearJugadores(this.zonaAmaxInicial[1], this.zonaAmayInicial[0], "yellow");
-                this.crearJugadores(this.zonaAmaxInicial[0], this.zonaAmayInicial[1], "yellow");
-                this.crearJugadores(this.zonaAmaxInicial[1], this.zonaAmayInicial[1], "yellow");
-
-                this.zonaVerdxInicial = [420,540];
-                this.zonaVerdyInicial = [540, 420];
-                this.crearJugadores(this.zonaVerdxInicial[0], this.zonaVerdyInicial[0], "green");
-                this.crearJugadores(this.zonaVerdxInicial[1], this.zonaVerdyInicial[0], "green");
-                this.crearJugadores(this.zonaVerdxInicial[0], this.zonaVerdyInicial[1], "green");
-                this.crearJugadores(this.zonaVerdxInicial[1], this.zonaVerdyInicial[1], "green");
-
-                this.zonaRojaxInicial = [60, 180];
-                this.zonaRojayInicial = [540, 420];
-                this.crearJugadores(this.zonaRojaxInicial[0], this.zonaRojayInicial[0], "red");
-                this.crearJugadores(this.zonaRojaxInicial[1], this.zonaRojayInicial[0], "red");
-                this.crearJugadores(this.zonaRojaxInicial[0], this.zonaRojayInicial[1], "red");
-                this.crearJugadores(this.zonaRojaxInicial[1], this.zonaRojayInicial[1], "red");
-/*
+              /*
                 if (this.lanzarDado() == 1 || this.lanzarDado() == 6) {
                     console.log("Salimos");
                 }*/
                
                 var luisN = setInterval(this.lanzarDado(), 1000);
+                for (var z = 0; z < this.coordenadasCamino.length; z++) {
+                    arregloDeSubCoor = this.coordenadasCamino[z].split(',');
+                    var a = arregloDeSubCoor[0];
+                    var b = arregloDeSubCoor[1];
+                    this.crearZonasJuego(a,b,"white");
 
+                }
+                
         },
 
             lanzarDado: function() {
